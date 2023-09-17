@@ -1,4 +1,3 @@
-from database import db
 from flask import jsonify
 import psycopg2
 
