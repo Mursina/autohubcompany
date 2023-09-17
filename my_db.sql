@@ -29,6 +29,7 @@ CREATE TABLE Orders (
     oid SERIAL PRIMARY KEY,
     uid INT REFERENCES Users(uid),
     ottd DECIMAL,
+    delivery_date TIMESTAMPTZ,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
