@@ -6,7 +6,12 @@ from autohubcompany.models.order_body import OrderBody  # noqa: E501
 from autohubcompany.models.order_body_updated_cart import OrderBodyUpdatedCart  # noqa: E501
 from autohubcompany.models.product import Product  # noqa: E501
 from autohubcompany import util
+from autohubcompany.business_logic import BusinessLogic
 
+bl = BusinessLogic()
+
+def create_users(body):
+    return bl.add_users(body)
 
 def cart_delete(cart_id):  # noqa: E501
     """Remove an entry from the shopping cart.
@@ -18,7 +23,7 @@ def cart_delete(cart_id):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return bl.remove_user_cart(cart_id)
 
 
 def cart_get(user_id):  # noqa: E501
@@ -31,7 +36,7 @@ def cart_get(user_id):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return bl.get_products_from_cart(user_id)
 
 
 def cart_patch(body):  # noqa: E501
@@ -46,7 +51,7 @@ def cart_patch(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = [OrderBodyUpdatedCart.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
-    return 'do some magic!'
+    return bl.update_product_quantity_to_cart(body)
 
 
 def cart_post(body):  # noqa: E501
@@ -61,7 +66,7 @@ def cart_post(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = CartBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        return bl.add_product_to_cart(body)
 
 
 def order_post(body):  # noqa: E501
@@ -76,7 +81,7 @@ def order_post(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = OrderBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        return bl.place_an_order(body)
 
 
 def products_get():  # noqa: E501
@@ -87,7 +92,7 @@ def products_get():  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return bl.get_products_from_store()
 
 
 def products_post(body):  # noqa: E501
@@ -102,7 +107,7 @@ def products_post(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = [Product.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
-    return 'do some magic!'
+        return bl.add_products_to_store(body)
 
 
 def products_product_id_get(product_id):  # noqa: E501
@@ -115,4 +120,4 @@ def products_product_id_get(product_id):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return bl.get_product_from_store(product_id)
