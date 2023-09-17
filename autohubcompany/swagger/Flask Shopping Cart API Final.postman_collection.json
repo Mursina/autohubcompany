@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "b22df3b8-676b-40f1-af20-24be365ca276",
+		"name": "Flask Shopping Cart API Final",
+		"description": "A Flask application for managing a shopping cart.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12734546"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "{product_id}",
+					"item": [
+						{
+							"name": "Get details of a specific product.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/:product_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Product info.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/products/:product_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"products",
+												":product_id"
+											],
+											"variable": [
+												{
+													"key": "product_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get an overview of all available products.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "A list of products.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Add one or more products to the database.",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"part_id\": 1,\n        \"name\": \"Brake Pads\",\n        \"price\": 29.99,\n        \"brand\": \"ACME Brakes\",\n        \"compatibility\": \"Fits Honda Civic (2015-2020)\",\n        \"quantity\": 100,\n        \"category\": \"Brakes\"\n    },\n    {\n        \"part_id\": 2,\n        \"name\": \"Oil Filter\",\n        \"price\": 6.99,\n        \"brand\": \"FilterMaster\",\n        \"compatibility\": \"Fits Toyota Camry (2012-2017)\",\n        \"quantity\": 150,\n        \"category\": \"Engine Components\"\n    },\n    {\n        \"part_id\": 3,\n        \"name\": \"Spark Plugs\",\n        \"price\": 3.49,\n        \"brand\": \"IgniteX\",\n        \"compatibility\": \"Fits Ford Focus (2014-2018)\",\n        \"quantity\": 200,\n        \"category\": \"Ignition System\"\n    },\n    {\n        \"part_id\": 4,\n        \"name\": \"Air Filter\",\n        \"price\": 9.99,\n        \"brand\": \"FilterMaster\",\n        \"compatibility\": \"Fits Nissan Altima (2013-2019)\",\n        \"quantity\": 120,\n        \"category\": \"Engine Components\"\n    },\n    {\n        \"part_id\": 5,\n        \"name\": \"Shock Absorbers\",\n        \"price\": 45.99,\n        \"brand\": \"RideMaster\",\n        \"compatibility\": \"Fits Chevrolet Silverado (2007-2013)\",\n        \"quantity\": 80,\n        \"category\": \"Suspension\"\n    },\n    {\n        \"part_id\": 6,\n        \"name\": \"Headlight Bulbs\",\n        \"price\": 7.99,\n        \"brand\": \"BrightLite\",\n        \"compatibility\": \"Fits Ford Escape (2016-2021)\",\n        \"quantity\": 180,\n        \"category\": \"Lighting\"\n    },\n    {\n        \"part_id\": 7,\n        \"name\": \"Cabin Air Filter\",\n        \"price\": 12.49,\n        \"brand\": \"FilterMaster\",\n        \"compatibility\": \"Fits Toyota Corolla (2014-2019)\",\n        \"quantity\": 100,\n        \"category\": \"HVAC\"\n    },\n    {\n        \"part_id\": 8,\n        \"name\": \"Alternator\",\n        \"price\": 89.99,\n        \"brand\": \"PowerGen\",\n        \"compatibility\": \"Fits Honda Accord (2013-2017)\",\n        \"quantity\": 60,\n        \"category\": \"Electrical\"\n    },\n    {\n        \"part_id\": 9,\n        \"name\": \"Exhaust Pipe\",\n        \"price\": 34.99,\n        \"brand\": \"FlowMax\",\n        \"compatibility\": \"Fits Toyota Camry (2012-2017)\",\n        \"quantity\": 70,\n        \"category\": \"Exhaust System\"\n    },\n    {\n        \"part_id\": 10,\n        \"name\": \"Radiator\",\n        \"price\": 59.99,\n        \"brand\": \"CoolMax\",\n        \"compatibility\": \"Fits Ford Explorer (2011-2019)\",\n        \"quantity\": 50,\n        \"category\": \"Cooling System\"\n    },\n    {\n        \"part_id\": 11,\n        \"name\": \"Transmission Fluid\",\n        \"price\": 8.99,\n        \"brand\": \"TransGuard\",\n        \"compatibility\": \"Universal\",\n        \"quantity\": 300,\n        \"category\": \"Fluids and Chemicals\"\n    },\n    {\n        \"part_id\": 12,\n        \"name\": \"Brake Rotors\",\n        \"price\": 38.99,\n        \"brand\": \"ACME Brakes\",\n        \"compatibility\": \"Fits Chevrolet Malibu (2013-2018)\",\n        \"quantity\": 90,\n        \"category\": \"Brakes\"\n    },\n    {\n        \"part_id\": 13,\n        \"name\": \"Fuel Pump\",\n        \"price\": 29.99,\n        \"brand\": \"FuelFlow\",\n        \"compatibility\": \"Fits Ford F-150 (2010-2014)\",\n        \"quantity\": 75,\n        \"category\": \"Fuel System\"\n    },\n    {\n        \"part_id\": 14,\n        \"name\": \"Tire Pressure Sensor\",\n        \"price\": 12.99,\n        \"brand\": \"TireGuard\",\n        \"compatibility\": \"Universal\",\n        \"quantity\": 200,\n        \"category\": \"Wheels and Tires\"\n    },\n    {\n        \"part_id\": 15,\n        \"name\": \"Starter Motor\",\n        \"price\": 49.99,\n        \"brand\": \"StartPro\",\n        \"compatibility\": \"Fits Toyota Camry (2012-2017)\",\n        \"quantity\": 65,\n        \"category\": \"Electrical\"\n    },\n    {\n        \"part_id\": 16,\n        \"name\": \"Wheel Hub Assembly\",\n        \"price\": 27.99,\n        \"brand\": \"WheelTech\",\n        \"compatibility\": \"Fits Honda CR-V (2015-2020)\",\n        \"quantity\": 85,\n        \"category\": \"Wheels and Tires\"\n    },\n    {\n        \"part_id\": 17,\n        \"name\": \"Oxygen Sensor\",\n        \"price\": 18.99,\n        \"brand\": \"EcoSense\",\n        \"compatibility\": \"Fits Chevrolet Silverado (2011-2018)\",\n        \"quantity\": 110,\n        \"category\": \"Emissions\"\n    },\n        {\n        \"part_id\": 18,\n        \"name\": \"Power Steering Pump\",\n        \"price\": 42.99,\n        \"brand\": \"PowerFlow\",\n        \"compatibility\": \"Fits Ford Fusion (2013-2019)\",\n        \"quantity\": 70,\n        \"category\": \"Steering\"\n    },\n    {\n        \"part_id\": 19,\n        \"name\": \"Wheel Bearing\",\n        \"price\": 14.99,\n        \"brand\": \"BearMax\",\n        \"compatibility\": \"Fits Toyota Camry (2012-2017)\",\n        \"quantity\": 100,\n        \"category\": \"Wheels and Tires\"\n    },\n    {\n        \"part_id\": 20,\n        \"name\": \"Thermostat\",\n        \"price\": 6.99,\n        \"brand\": \"ThermoPro\",\n        \"compatibility\": \"Fits Honda Civic (2012-2017)\",\n        \"quantity\": 120,\n        \"category\": \"Cooling System\"\n    },\n    {\n        \"part_id\": 21,\n        \"name\": \"CV Joint\",\n        \"price\": 22.99,\n        \"brand\": \"DriveTech\",\n        \"compatibility\": \"Fits Nissan Altima (2010-2015)\",\n        \"quantity\": 95,\n        \"category\": \"Drivetrain\"\n    },\n    {\n        \"part_id\": 22,\n        \"name\": \"Wheel Lug Nuts\",\n        \"price\": 1.99,\n        \"brand\": \"FastenTite\",\n        \"compatibility\": \"Universal\",\n        \"quantity\": 500,\n        \"category\": \"Wheels and Tires\"\n    },\n    {\n        \"part_id\": 23,\n        \"name\": \"Timing Belt\",\n        \"price\": 12.99,\n        \"brand\": \"TimeMaster\",\n        \"compatibility\": \"Fits Toyota Corolla (2010-2015)\",\n        \"quantity\": 80,\n        \"category\": \"Engine Components\"\n    },\n    {\n        \"part_id\": 24,\n        \"name\": \"Serpentine Belt\",\n        \"price\": 8.99,\n        \"brand\": \"DriveForce\",\n        \"compatibility\": \"Fits Ford Escape (2013-2018)\",\n        \"quantity\": 120,\n        \"category\": \"Engine Components\"\n    },\n    {\n        \"part_id\": 25,\n        \"name\": \"Control Arm\",\n        \"price\": 34.99,\n        \"brand\": \"ControlMax\",\n        \"compatibility\": \"Fits Honda Accord (2011-2017)\",\n        \"quantity\": 60,\n        \"category\": \"Suspension\"\n    },\n    {\n        \"part_id\": 26,\n        \"name\": \"Battery\",\n        \"price\": 69.99,\n        \"brand\": \"PowerCell\",\n        \"compatibility\": \"Fits Chevrolet Silverado (2014-2019)\",\n        \"quantity\": 45,\n        \"category\": \"Electrical\"\n    },\n    {\n        \"part_id\": 27,\n        \"name\": \"Radiator Fan Assembly\",\n        \"price\": 29.99,\n        \"brand\": \"CoolMax\",\n        \"compatibility\": \"Fits Toyota Camry (2012-2017)\",\n        \"quantity\": 70,\n        \"category\": \"Cooling System\"\n    },\n    {\n        \"part_id\": 28,\n        \"name\": \"Muffler\",\n        \"price\": 19.99,\n        \"brand\": \"SoundMaster\",\n        \"compatibility\": \"Fits Honda Civic (2012-2017)\",\n        \"quantity\": 90,\n        \"category\": \"Exhaust System\"\n    },\n    {\n        \"part_id\": 29,\n        \"name\": \"Strut Assembly\",\n        \"price\": 54.99,\n        \"brand\": \"RideMaster\",\n        \"compatibility\": \"Fits Ford Focus (2012-2018)\",\n        \"quantity\": 55,\n        \"category\": \"Suspension\"\n    },\n    {\n        \"part_id\": 30,\n        \"name\": \"Steering Rack\",\n        \"price\": 39.99,\n        \"brand\": \"SteerTech\",\n        \"compatibility\": \"Fits Toyota Corolla (2014-2019)\",\n        \"quantity\": 65,\n        \"category\": \"Steering\"\n    },\n    {\n        \"part_id\": 31,\n        \"name\": \"Catalytic Converter\",\n        \"price\": 89.99,\n        \"brand\": \"EcoCatalyzer\",\n        \"compatibility\": \"Fits Chevrolet Malibu (2013-2018)\",\n        \"quantity\": 40,\n        \"category\": \"Emissions\"\n    },\n    {\n        \"part_id\": 32,\n        \"name\": \"Transmission Mount\",\n        \"price\": 11.99,\n        \"brand\": \"TransGuard\",\n        \"compatibility\": \"Fits Ford Explorer (2011-2019)\",\n        \"quantity\": 75,\n        \"category\": \"Drivetrain\"\n    },\n    {\n        \"part_id\": 33,\n        \"name\": \"Fuel Injector\",\n        \"price\": 14.99,\n        \"brand\": \"FuelFlow\",\n        \"compatibility\": \"Fits Toyota Camry (2012-2017)\",\n        \"quantity\": 100,\n        \"category\": \"Fuel System\"\n    },\n    {\n        \"part_id\": 34,\n        \"name\": \"Ignition Coil\",\n        \"price\": 9.99,\n        \"brand\": \"IgniteX\",\n        \"compatibility\": \"Fits Honda Accord (2011-2017)\",\n        \"quantity\": 110,\n        \"category\": \"Ignition System\"\n    },\n    {\n        \"part_id\": 35,\n        \"name\": \"Wheel Hub Assembly\",\n        \"price\": 27.99,\n        \"brand\": \"WheelTech\",\n        \"compatibility\": \"Fits Nissan Altima (2013-2019)\",\n        \"quantity\": 85,\n        \"category\": \"Wheels and Tires\"\n    }\n]\n",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Products added successfully.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"part_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"price\": \"<number>\",\n    \"brand\": \"<string>\",\n    \"compatibility\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"category\": \"<string>\"\n  },\n  {\n    \"part_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"price\": \"<number>\",\n    \"brand\": \"<string>\",\n    \"compatibility\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"category\": \"<string>\"\n  }\n]",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "cart",
+			"item": [
+				{
+					"name": "Get the items in the shopping cart.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cart?user_id=3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "3",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "The current shopping cart.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cart?user_id=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cart"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "<integer>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Add a product to the shopping cart.",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 3,\n  \"product_id\": 2,\n  \"quantity\": 1000\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Product added to the cart successfully.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user_id\": \"<integer>\",\n  \"product_id\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/cart",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Remove an entry from the shopping cart.",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cart?cart_id=6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							],
+							"query": [
+								{
+									"key": "cart_id",
+									"value": "6",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Product removed from the cart.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cart?cart_id=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cart"
+									],
+									"query": [
+										{
+											"key": "cart_id",
+											"value": "<integer>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Update the quantity of a product in the cart.",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"cart_id\": 1,\n        \"quantity\": 1000\n    },\n    {\n        \"cart_id\": 2,\n        \"quantity\": 1000\n    }\n]",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							]
+						},
+						"description": "This endpoint allows you to update the quantity of a product in the user's cart."
+					},
+					"response": [
+						{
+							"name": "Successfully updated the cart item.",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"cart_id\": \"<integer>\",\n    \"quantity\": \"<integer>\"\n  },\n  {\n    \"cart_id\": \"<integer>\",\n    \"quantity\": \"<integer>\"\n  }\n]",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/cart",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad request. Invalid input.",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"cart_id\": \"<integer>\",\n    \"quantity\": \"<integer>\"\n  },\n  {\n    \"cart_id\": \"<integer>\",\n    \"quantity\": \"<integer>\"\n  }\n]",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/cart",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Cart item not found.",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"cart_id\": \"<integer>\",\n    \"quantity\": \"<integer>\"\n  },\n  {\n    \"cart_id\": \"<integer>\",\n    \"quantity\": \"<integer>\"\n  }\n]",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/cart",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "Place an order for the products in the shopping cart.",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"delivery_date\": \"2023-09-16T14:30:00\",\n  \"user_id\": 5,\n  \"updated_cart\": [\n    {\n        \"cart_id\": 4,\n        \"quantity\": 10\n    },\n    {\n        \"cart_id\": 5,\n        \"quantity\": 10\n    }\n]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Order placed successfully.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"delivery_date\": \"<dateTime>\",\n  \"user_id\": \"<integer>\",\n  \"updated_cart\": [\n    {\n      \"cart_id\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"cart_id\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/order",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
