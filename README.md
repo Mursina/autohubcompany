@@ -51,6 +51,22 @@ Please follow the below steps to create a database
    \c autohubcompany
    ```
 
+## Get the packages for running the application
+Create a virtualenv:
+```
+virtualenv penv -p /usr/bin/python3.9
+```
+
+Activate it:
+```
+. penv/bin/activate
+```
+
+Install required packages:
+```
+pip install -r requirements.txt
+```
+
 ## Running with Docker
 
 To run the server on a Docker container, please execute the following from the root directory:
