@@ -6,6 +6,20 @@ info:
 servers:
 - url: http://localhost:8080
 paths:
+  /users:
+    post:
+      summary: Add users to the database.
+      operationId: create_users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user_body'
+        required: true
+      responses:
+        "201":
+          description: Users added successfully.
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
   /products:
     get:
       summary: Get an overview of all available products.
@@ -13,7 +27,7 @@ paths:
       responses:
         "200":
           description: A list of products.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
     post:
       summary: Add one or more products to the database.
       operationId: products_post
@@ -26,7 +40,7 @@ paths:
       responses:
         "201":
           description: Products added successfully.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
   /products/{product_id}:
     get:
       summary: Get details of a specific product.
@@ -42,7 +56,7 @@ paths:
       responses:
         "200":
           description: Product info.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
   /cart:
     get:
       summary: Get the items in the shopping cart.
@@ -58,7 +72,7 @@ paths:
       responses:
         "200":
           description: The current shopping cart.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
     post:
       summary: Add a product to the shopping cart.
       operationId: cart_post
@@ -71,7 +85,7 @@ paths:
       responses:
         "201":
           description: Product added to the cart successfully.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
     delete:
       summary: Remove an entry from the shopping cart.
       operationId: cart_delete
@@ -86,7 +100,7 @@ paths:
       responses:
         "204":
           description: Product removed from the cart.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
     patch:
       summary: Update the quantity of a product in the cart.
       description: This endpoint allows you to update the quantity of a product in
@@ -105,7 +119,7 @@ paths:
           description: Bad request. Invalid input.
         "404":
           description: Cart item not found.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
   /order:
     post:
       summary: Place an order for the products in the shopping cart.
@@ -119,7 +133,7 @@ paths:
       responses:
         "201":
           description: Order placed successfully.
-      x-openapi-router-controller: auto_hub.controllers.default_controller
+      x-openapi-router-controller: autohubcompany.controllers.default_controller
 components:
   schemas:
     user_body:
@@ -153,12 +167,20 @@ components:
         delivery_date:
           type: string
           format: date-time
+          example: "2023-09-16T14:30:00"  # ISO 8601 format
         user_id:
           type: integer
         updated_cart:
           type: array
           items:
-            $ref: '#/components/schemas/order_body_updated_cart'
+            type: object
+            properties:
+              cart_id:
+                type: integer
+                description: The ID of the cart item.
+              quantity:
+                type: integer
+                description: The quantity for the cart item.
     cart_body:
       type: object
       properties:
@@ -171,14 +193,11 @@ components:
     update_cart:
       type: array
       items:
-        $ref: '#/components/schemas/order_body_updated_cart'
-    order_body_updated_cart:
-      type: object
-      properties:
-        cart_id:
-          type: integer
-          description: The ID of the cart item.
-        quantity:
-          type: integer
-          description: The quantity for the cart item.
-
+        type: object
+        properties:
+          cart_id:
+            type: integer
+            description: The ID of the cart item.
+          quantity:
+            type: integer
+            description: The quantity for the cart item.
