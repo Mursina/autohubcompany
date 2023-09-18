@@ -52,9 +52,8 @@ Please follow the below steps to create a database
    ```
 
 ## Functionality
-1. API functionality
-   
-![Alt text](image.png#center)
+
+### API functionality
 
 i. POST /users:
 
