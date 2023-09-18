@@ -51,7 +51,7 @@ def cart_patch(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = [OrderBodyUpdatedCart.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
-    return bl.update_product_quantity_to_cart(body)
+        return bl.update_product_quantity_to_cart(body)
 
 
 def cart_post(body):  # noqa: E501

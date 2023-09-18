@@ -153,6 +153,7 @@ class BusinessLogic:
         try:
             cur = self.conn.cursor()
             cur.execute(f'DELETE FROM CartItems WHERE cid={user_id}')
+            cur.fetchone()
             self.conn.commit()
             return jsonify(message='Cart items deleted successfully'), 204
 
@@ -164,8 +165,8 @@ class BusinessLogic:
             cur = self.conn.cursor()
 
             for cart_item in body:
-                cart_id = cart_item['cart_id']
-                quantity = cart_item['quantity']
+                cart_id = cart_item.cart_id
+                quantity = cart_item.quantity
                 cur.execute(f'''
                             SELECT pname,pqty FROM Products
                             ''')
@@ -190,9 +191,9 @@ class BusinessLogic:
         try:
             cur = self.conn.cursor()
 
-            delivery_date = body['delivery_date']
-            user_id = body['user_id']
-            updated_cart = body['updated_cart']
+            delivery_date = body.delivery_date
+            user_id = body.user_id
+            updated_cart = body.updated_cart
 
             updated_status = self.update_product_quantity_to_cart(updated_cart)
 
@@ -200,8 +201,8 @@ class BusinessLogic:
                 total_amount = 0
                 # find the total amount
                 for item in updated_cart:
-                    cart_id = item["cart_id"]
-                    quantity = item["quantity"]
+                    cart_id = item.cart_id
+                    quantity = item.quantity
 
                     cur.execute(f'''
                         SELECT p.pprice
@@ -215,12 +216,13 @@ class BusinessLogic:
                         product_price = result[0]
                         total_amount += product_price * quantity
 
-                cur.execute(f'INSERT INTO Orders (uid, ottd, delivery_date) VALUES ({user_id}, {total_amount}, {delivery_date}) RETURNING oid')
+                cur.execute('INSERT INTO Orders (uid, ottd, delivery_date) VALUES (%s, %s, %s) RETURNING oid', 
+                            (user_id, total_amount, delivery_date))
                 order_id = cur.fetchone()[0]
 
                 for item in updated_cart:
-                    cart_id = item["cart_id"]
-                    quantity = item["quantity"]
+                    cart_id = item.cart_id
+                    quantity = item.quantity
 
                     cur.execute(f'SELECT pid FROM CartItems WHERE cid = {cart_id}')
                     product_id = cur.fetchone()[0]
