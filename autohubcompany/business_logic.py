@@ -84,7 +84,7 @@ class BusinessLogic:
         try:
             cur = self.conn.cursor()
             cur.execute(f'''
-                        SELECT u.uname AS user_name, p.pname, p.pbrand, p.pprice, p.pcompat, p.pqty, p.pcat
+                        SELECT u.uname AS user_name, p.pname, p.pbrand, p.pprice, p.pcompat, ci.cqty, p.pcat
                         FROM CartItems ci
                         INNER JOIN Products p ON ci.pid = p.pid
                         INNER JOIN Users u ON ci.uid = u.uid
@@ -103,12 +103,12 @@ class BusinessLogic:
                     formatted_results['user_name'] = user_name
 
                 formatted_results['products'].append({
-                    'pname': pname,
-                    'pbrand': pbrand,
-                    'pprice': float(pprice),  # Convert to float for JSON serialization
-                    'pcompat': pcompat,
-                    'pqty': pqty,
-                    'pcat': pcat
+                    'name': pname,
+                    'brand': pbrand,
+                    'price': float(pprice),  # Convert to float for JSON serialization
+                    'compatibility': pcompat,
+                    'quantity': pqty,
+                    'category': pcat
                 })
 
             return formatted_results
