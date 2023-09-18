@@ -582,6 +582,81 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Add users to the database.",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  \"Alice\",\n  \"Bob\",\n  \"Charlie\",\n  \"David\",\n  \"Ella\",\n  \"Frank\",\n  \"Grace\",\n  \"Henry\",\n  \"Ivy\",\n  \"Jack\",\n  \"Katie\",\n  \"Liam\",\n  \"Mia\",\n  \"Noah\",\n  \"Olivia\",\n  \"Parker\",\n  \"Quinn\",\n  \"Riley\",\n  \"Sophia\",\n  \"Tristan\",\n  \"Uma\",\n  \"Vincent\",\n  \"Willow\",\n  \"Xander\",\n  \"Yara\",\n  \"Zoe\"\n]",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Users added successfully.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
 		}
 	],
 	"variable": [
