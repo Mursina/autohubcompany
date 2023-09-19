@@ -1,15 +1,26 @@
 from flask import jsonify
 import psycopg2
+import os 
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Get the host's IP address from the environment variable
+host_ip = os.environ.get("HOST_IP", "localhost")
+db = os.environ.get("DB_NAME", "autohubcompany")
+usr = os.environ.get("DB_USER", "")
+pwd = os.environ.get("DB_PASSWORD", "")
 
 class BusinessLogic:
 
     def __init__(self):
         # Initialize the database connection in the constructor
         self.conn = psycopg2.connect(
-            host="localhost",
-            database="autohubcompany",
-            user='mur',
-            password=1234
+            host=host_ip,
+            database=db,
+            user=usr,
+            password=pwd
         )
 
     def add_products_to_store(self, body):

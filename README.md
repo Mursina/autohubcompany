@@ -159,8 +159,15 @@ To run the server on a Docker container, please execute the following from the r
 docker build -t autohubcompany .
 
 # starting up a container
-docker run -p 8080:8080 autohubcompany
+docker run -e HOST_IP=$host_ip -e DB_USER=$db_user -e DB_PASSWORD=$db_pwd -p 8080:8080 autohubcompany
 ```
+
+Please assign the host_ip when you run the docker container like below,
+```
+docker run -e HOST_IP=172.23.141.99 -e DB_USER=mur -e DB_PASSWORD=1234 -p 8080:8080 autohubcompany
+```
+
+And also set the PYTHONPATH in the .env file
 
 Note:
 

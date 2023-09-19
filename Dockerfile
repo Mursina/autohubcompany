@@ -3,8 +3,6 @@ FROM python:3.9-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-ENV PYTHONPATH=/mnt/d/mur_dev/autohub/autohubcompany
-
 COPY requirements.txt /usr/src/app/
 
 RUN pip3 install --no-cache-dir -r requirements.txt
